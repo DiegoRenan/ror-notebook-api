@@ -5,6 +5,13 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
 
+    #render para actions individual. Metodos no controller
+    #render json: @contacts.map { |contact| contact.attributes.merge({author: "Jackson"})}
+
+    #render para actions individual. Metodo chamado no model
+    #render json: @contacts, methods: :author
+
+    #render sobreescrevendo o as_json. Aplicado para todas actions
     render json: @contacts
   end
 
