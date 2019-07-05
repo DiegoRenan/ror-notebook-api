@@ -12,12 +12,16 @@ class ContactsController < ApplicationController
     #render json: @contacts, methods: :author
 
     #render sobreescrevendo o as_json. Aplicado para todas actions
+    #render json: @contacts, methods: [:hello, :i18n]
+
+    #render json: @contacts, methods: :birthdate_br
+
     render json: @contacts
   end
 
   # GET /contacts/1
   def show
-    render json: @contact
+    render json: @contact.to_br
   end
 
   # POST /contacts
@@ -53,6 +57,6 @@ class ContactsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def contact_params
-      params.require(:contact).permit(:name, :email, :birthdate)
+      params.require(:contact).permit(:name, :email, :birthdate, :kind_id)
     end
 end
